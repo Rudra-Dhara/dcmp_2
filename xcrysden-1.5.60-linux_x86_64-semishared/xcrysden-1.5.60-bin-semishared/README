@@ -1,0 +1,180 @@
+________________________________________________________________________
+
+        * * * README & INSTALL file for XCRYSDEN * * *
+________________________________________________________________________
+
+
+XCrySDen web site is http://www.xcrysden.org/. The code can be
+downloaded either as source or compiled package.
+
+The compiled package, at least for Linux, is available in two flavors,
+named as shared and semishared. Both packages use dynamic
+(i.e. shared) libraries, the difference being that the semishared
+package has several needed shared libraries included within the
+package (i.e. Tcl/Tk, Mesa, and FFTW), thus hopefully diminishing the
+software requirements.
+
+Note that from version 1.6 on, xcrysden will be included in several
+distributions. At the moment xcrysden is in fink (for Mac OS X) and
+about to enter in GNU/Linux Debian (it is expected it will be
+available in more distros shortly). It is recommended to use those
+xcrysden packages. If for your distribution xcrysden is not available,
+then read below instructions.
+
+
+
+________________________________________________________________________
+
+INSTALLATION INSTRUCTIONS
+________________________________________________________________________
+  
+   1. Installing the compiled package
+   2. User customization
+   3. Installing the source package
+
+
+________________________________________________________________________
+
+1.) HOW TO INSTALL THE COMPILED PACKAGE
+________________________________________________________________________
+
+
+The compiled package does not require the compilation, hence its
+installation is fairly simple.
+
+--
+FOR IMPATIENT: minimal installation instructions
+--
+
+   1. unpack the xc-VERSION.tar.gz package file
+         e.g., as: tar zxvf xc-VERSION.tar.gz   
+               or: gunzip -c xc-VERSION.tar.gz | tar xvf -
+
+   2. cd into the so-created directory (i.e., cd xcrysden-VERSION/)
+
+   3. launch the program as "./xcrysden"
+
+Starting from XCrySDen-1.6, the use of XCRYSDEN_TOPDIR environmental
+variable is deprecated, because it was a source of confusion for many
+users. Consider to unset it in case it was defined during the
+installation of previous versions.
+
+Optionally, XCRYSDEN_SCRATCH environmental variable can be defined.
+It is the place where XCrySDen writes scratch (temporary) files. If
+the variable is not defined the /tmp/ directory will be used.
+
+BEWARE: If an older XCrySDen version (<1.5) is already installed then
+you need to manually unset (or update) the XCRYSDEN_TOPDIR variable
+definition in your profile !!!
+
+
+________________________________________________________________________
+
+2.) USER CUSTOMIZATION
+________________________________________________________________________
+
+
+Starting from XCrySDen-1.6, the use of './xcConfigure' is deprecated
+(it has caused more problems than advantages) and for this reason it
+has been moved/renamed into scripts/xcConfigure.sh file.
+
+Instead XCrySDen can be user-customized manually. For this reason
+create $HOME/.xcrysden/ directory and copy the "custom-definitions"
+and "Xcrysden_resources" files from the Tcl/ subdirectory of the
+XCrySDen root directory. These can be then modified according to user
+preference.
+
+For more info about customization, see: http://www.xcrysden.org/doc/custom.html
+
+
+________________________________________________________________________
+
+3.) HOW TO INSTALL THE SOURCE PACKAGE
+________________________________________________________________________
+
+
+3.1 SOFTWARE REQUIREMENTS: 
+
+XCrySDen depends on several libraries, in particular:
+	 - Tcl/Tk (>= 8.4)
+	 - OpenGL (e.g., Mesa)
+	 - FFTW3 
+	 - BWidget
+
+The compilation of XCrySDen requires the development versions of these
+libraries, because not only the library files, but also their header
+files are required.  To aid at easier compilation, these libraries
+will be automatically downloaded from the web if so instructed (see
+below). Alternatively, these can be download from:
+
+Tcl/Tk:   http://prdownloads.sourceforge.net/tcl/
+Mesa:     ftp://ftp.freedesktop.org/pub/mesa/
+FFTW:     http://www.fftw.org
+BWidget:  http://sourceforge.net/projects/tcllib/files/BWidget/
+
+In addition to these libraries, also the X11 libraries are needed for
+compilation.
+
+[ NOTICE: during the compilation the required BWidget package (small
+size) will be always automatically donwloaded from:
+http://sourceforge.net/projects/tcllib/files/BWidget/ ]
+
+
+3.2 COMPILATION:
+	
+To compile XCrySDen sources the "Make.sys" file should exist in the
+package root directory. Templates can be find in ./system/
+sub-directory. Copy an appropriate template file as:
+
+	$ cp ./system/Make.MY-SISTEM Make.sys
+
+and edit the "Make.sys" to suit your needs. If you want the
+compilation to automatically download and compile the external library
+sources (Tcl/Tk, Mesa, FFTW) define "COMPILE_ALL = yes" (see
+system/Make.sys-semishared for more details).
+
+Then compile as:
+
+        $ make all
+
+
+3.3 INSTALLING SYSTEM WIDE:
+
+XCrySDen can be installed system-wide as:
+
+	$ make install
+
+By default this will install the package into /usr/local/. The
+installation directory can be changed by invoking "make install" as:
+
+        $ prefix=/MY/INSTALLATION/DIR  make install
+
+where /MY/INSTALLATION/DIR stands for installation directory. This will
+install the package into ($prefix/bin/xcrysden, $prefix/lib/xcrysden/,
+$prefix/share/xcrysden/).
+
+
+3.4 TROUBLE SHOOTING:
+
+If the installation has failed for some reason then read what is the
+error message printed.  
+
+Also read carefully the instructions inside the "Make.sys" and edit
+the file according to your needs.
+
+The most often cause of failure is that either some header files were
+not found or that there are some missing references, which means that
+the code will have to be linked against additional libraries.
+
+If the failure appeared in compilation of external library, then try
+to compile this library manually, i.e., do "cd external/src/LIB",
+where LIB is the corresponding library directory, and read the
+installation instructions therein.
+
+In case of unsolvable problems, ask for help either on XCrySDen
+mailing list (xcrysden@democritos.it,
+http://www.democritos.it/mailman/listinfo/xcrysden).
+
+
+--
+Anton Kokalj (tone.kokalj@ijs.si), Mon Mar 12 2012

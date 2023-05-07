@@ -1,0 +1,149 @@
+Version: 1.6:
+-------------
+
+* new Movie-Maker: xcrysden allows for real-time capture of display. Three
+  modes are supported: "real-time capture", "every redisplay", and
+  "manual".
+
+* several movie encoders are supported, in particular
+
+  - for Animated-GIF: convert (from ImageMagick), gifsicle, and
+    whirlgif; convert is used by default. 
+
+  - for AVI/MPEG: mencoder (from mplayer) and ppmtompeg. Mencoder is
+    used by default.
+
+* better algorithm for isosurface shading (nicer surfaces)
+
+* no more external package specifications in
+  ~/.xcrysden/custom-definitions, due to automatic package finding
+  mechanism. The only exception is the CRYSTAL package
+  (http://www.crystal.unito.it/), which still needs to be explicitly
+  defined.
+
+* customization of Fermi surface viewer is possible in ~/.xcrysden/custom-definitions
+
+* new command-line option --custom for reading customization from specified file
+
+* compatibility with Quantum-Espresso 4.x, WIEN2k_08, and CRYSTAL06+09
+
+* XCRYSDEN_TOPDIR and XCRYSDEN_SCRATCH environmental variables are not
+  required anymore. The use of the former is deprecated and the latter
+  is set to /tmp if unspecified.
+
+* the use of "xcConfigure" is deprecated
+
+* "make install" now installs the package system-wide (see README file
+  for more details).
+
+* ~/.xcrysden/Xcrysden_resources is used instead of
+  ~/.xcrysden/Xcrysden_defaults. This is due to a new font handling
+  mechanism in The Tcl/Tk 8.5, which makes the fonts as specified by
+  old ~/.xcrysden/Xcrysden_defaults to look pretty ugly.
+
+* improved measurement procedure: the selection of atoms is more
+  precise (i.e. easier) and the coordinates of mouse-click selected
+  atoms can be displayed in Angstrom, Bohr, crystal-primitive,
+  crystal-conventional, and alat units. Measured distances are
+  reported also in bohr units, and the printout format of measured
+  distances and angles is configurable
+
+* adding mouse-wheel support for display-zooming (I finally got a
+  mouse with a wheel).
+
+* a "stop-playing" button added to animations control window 
+
+* crystal borders are displayed by default for periodic structures
+
+* checking for stale files in $XCRYSDEN_SCRATCH (prompts the user for their deletion)
+
+* only one flavor of source package (external library sources are
+  download and compiled on request)
+
+* many bug fixes 
+
+* for further information, see ChangeLog
+
+
+
+Version: 1.4:
+-------------
+
+* automatic labeling of k-points for k-path selection
+  (thanks to Peter Blaha)
+
+* Stereo display mode (thanks to Gerardo Ballabio)
+
+* Anaglyph display mode, i.e., fake stereo, requires red-blue glasses
+  (thanks to Eric VERFAILLIE)
+
+* a few Bug fixes in visualization of Fermi surfaces (thanks to Pablo
+  de la Mora)
+
+* improved EPS printing (also PDF printing) thanks to new
+  gl2ps-1.2.4. The vectorial EPS printing of Lighting-On mode is
+  finally good enough.
+
+* comments added to the XSF format; comment-lines start with the "#"
+  character and can be located only in between the sections, but
+  within a given section.
+
+
+Version: Beta-1.2
+-----------------
+
+* improved visualization of Fermi surfaces (a few Bug fixes; thanks to Pablo de la Mora)
+
+* visualization of vector-fields
+
+* dummy "X" atom does not have bonds anymore
+
+* multi-band display of Fermi surfaces in one widget
+
+* added support for CRYSTAL03
+
+* more configurable options for forces (color, thickness)
+
+* Coordinate system color is configurable
+
+
+Version: Beta-1.0
+-----------------
+
+* XCRYSDEN covered by GNU GENERAL PUBLIC LICENSE
+
+* XCRYSDEN ported to MAC OSX (requires Xserver)
+
+* XCRYSDEN ported to MS-Windows (under CYGWIN). Does not require
+  X-server, but require CYGWIN (http://www.cygwin.com/).
+
+* Visualization of H-bonds (lighting-on mode only).
+
+* Update of the PWscf IO filters (compatible with PWscf v.2.0).
+
+* XCRYSDEN interface was mad compatible with CRYSTAL03
+
+* Simple bond editing: the covalent-radius item
+  (Modify-->Atomic Radius menu) has been split into
+  covalent- and display-radius items. By changing the covalent radii
+  of given atomic types the display of bonds can be altered.
+
+* Improved "Save Current State and Structure" mechanism.
+
+* XCRYSDEN can be embedded in an another aplication's window
+  by using --use option, i.e., "xcrysden --use window-id".
+
+* Adding reduce "-r" option to reduce the dimensionality of the
+  structure (works for XSF file only): "xcrysden -r 2 --xsf file.xsf"
+  will display the structure from file.xsf as slab (dim=2) even if it
+  was specified as crystal (dim=3) in file.xsf
+
+* Visualization of Fermi surfaces a bit improved
+
+* Some bug fixes ...
+
+* Fixing bug for transformation of selected k-points to WIEN2k format
+  (fixed by Florent Boucher). BEWARE: it seems this transformation
+  remains buggy. Use at your own risk, and please, check carefully
+  every time the resultant klist file: the program prints some useful
+  supporting information during the transformation to WIEN2k format.

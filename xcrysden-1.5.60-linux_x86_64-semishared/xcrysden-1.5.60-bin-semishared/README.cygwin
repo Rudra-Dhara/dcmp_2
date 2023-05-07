@@ -1,0 +1,27 @@
+________________________________________________________________________
+
+        * * * README for running XCRYSDEN under CYGWIN * * *
+________________________________________________________________________
+
+
+1. SOFTWARE REQUIREMENTS
+
+To run XCrySDen (pre-compiled) package under CYGWIN you will need the
+following cygwin packages:
+
+	  * tcl-tk
+	  * fftw3
+	  * libGL1
+	  * libGLU1
+	  * xorg-server
+	  * bash 
+	  * bc
+	  * coreutils
+	  * gawk
+	  * grep
+	  * gzip
+	  * ImageMagick
+	  * less
+	  * more
+
+BEWARE: the cygwin version of xcrysden requires running X-server !
